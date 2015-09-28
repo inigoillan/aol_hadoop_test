@@ -6,12 +6,14 @@ package com.aol.logprocessor.parser;
  */
 public interface AddressParser<T extends Address> {
     /**
-     * Parses an address. Note that if {@link #canParse(String)} returns true, then this method should never fail
+     * Parses an address. Note that if {@link #canParse(String)} returns true, then this method should never fail,
+     * so do check first if this parser is able to deal with the address.
      *
      * @param address
      * @return
+     * @throws ParsingException
      */
-    T parse(String address);
+    T parse(String address) throws ParsingException;
 
     /**
      * Checks whether this parser can parse the given address
