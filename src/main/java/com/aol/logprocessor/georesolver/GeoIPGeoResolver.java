@@ -1,5 +1,6 @@
 package com.aol.logprocessor.georesolver;
 
+import com.aol.logprocessor.parser.IPAddress;
 import com.google.common.base.Throwables;
 import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
@@ -16,7 +17,7 @@ import java.net.InetAddress;
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>
  * @since 1.0
  */
-public class GeoIPGeoResolver implements GeoResolver {
+public class GeoIPGeoResolver implements GeoResolver<IPAddress> {
 
     private final DatabaseReader dbReader;
 
@@ -38,8 +39,8 @@ public class GeoIPGeoResolver implements GeoResolver {
     }
 
     @Nonnull
-    public GeoLocation resolveLocation(@Nonnull InetAddress address) throws ResolvingException {
-        CityResponse city = getCity(address);
+    public GeoLocation resolveLocation(@Nonnull IPAddress address) throws ResolvingException {
+        CityResponse city = getCity(address.get());
 
         return buildGeoLocation(city);
     }

@@ -1,5 +1,6 @@
 package com.aol.logprocessor.georesolver;
 
+import com.aol.logprocessor.parser.IPAddress;
 import com.google.common.base.Throwables;
 import org.junit.Test;
 
@@ -17,7 +18,7 @@ public class GeoIPGeoResolverTest {
     @Test
     public void ResolveLocation_GivenGBIP_ReturnsUK() throws ResolvingException {
         // Arrange
-        InetAddress address = getInetAddress("2.24.1.1");
+        IPAddress address = getInetAddress("2.24.1.1");
         GeoIPGeoResolver resolver = new GeoIPGeoResolver();
 
         // Act
@@ -31,7 +32,7 @@ public class GeoIPGeoResolverTest {
     @Test(expected = ResolvingException.class)
     public void ResolveLocation_GivenInvalidIP_ThrowsResolvingException() throws ResolvingException {
         // Arrange
-        InetAddress address = getInetAddress("192.168.0.1");
+        IPAddress address = getInetAddress("192.168.0.1");
         GeoIPGeoResolver resolver = new GeoIPGeoResolver();
 
         // Act
@@ -43,9 +44,9 @@ public class GeoIPGeoResolverTest {
         return new GeoLocation(countryCode);
     }
 
-    private InetAddress getInetAddress(String ip) {
+    private IPAddress getInetAddress(String ip) {
         try {
-            return Inet4Address.getByName(ip);
+            return new IPAddress(Inet4Address.getByName(ip));
         } catch (UnknownHostException e) {
             Throwables.propagate(e);
         }
