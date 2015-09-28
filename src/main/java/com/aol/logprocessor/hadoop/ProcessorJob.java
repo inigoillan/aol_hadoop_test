@@ -1,4 +1,4 @@
-package com.aol.logprocessor;
+package com.aol.logprocessor.hadoop;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;

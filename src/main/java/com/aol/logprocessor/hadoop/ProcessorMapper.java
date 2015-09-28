@@ -1,4 +1,4 @@
-package com.aol.logprocessor;
+package com.aol.logprocessor.hadoop;
 
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
