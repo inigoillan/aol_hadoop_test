@@ -1,5 +1,8 @@
-package com.aol.logprocessor.parser;
+package com.aol.logprocessor.parser.address;
 
+import com.aol.logprocessor.parser.ParsingException;
+import com.aol.logprocessor.parser.address.IP4AddressParser;
+import com.aol.logprocessor.parser.address.IPAddress;
 import com.google.api.client.repackaged.com.google.common.base.Throwables;
 import org.junit.Test;
 

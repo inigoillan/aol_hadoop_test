@@ -8,6 +8,7 @@ import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.Tool;
 
@@ -30,6 +31,8 @@ public class ProcessorJob extends Configured implements Tool {
 
         // setup mappers and reducers
         job.setMapperClass(ProcessorMapper.class);
+
+        job.setInputFormatClass(TextInputFormat.class);
 
         // set up mapper and reducer outputs
         job.setMapOutputKeyClass(LongWritable.class);

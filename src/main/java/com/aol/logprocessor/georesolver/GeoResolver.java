@@ -1,9 +1,8 @@
 package com.aol.logprocessor.georesolver;
 
-import com.aol.logprocessor.parser.Address;
+import com.aol.logprocessor.parser.address.Address;
 
 import javax.annotation.Nonnull;
-import java.net.InetAddress;
 
 /**
  * Geo location resolver class

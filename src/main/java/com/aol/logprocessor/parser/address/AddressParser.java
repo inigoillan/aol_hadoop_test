@@ -1,4 +1,6 @@
-package com.aol.logprocessor.parser;
+package com.aol.logprocessor.parser.address;
+
+import com.aol.logprocessor.parser.ParsingException;
 
 /**
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>

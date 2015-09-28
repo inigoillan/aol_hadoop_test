@@ -1,9 +1,8 @@
 package com.aol.logprocessor.georesolver;
 
-import com.aol.logprocessor.parser.IPAddress;
+import com.aol.logprocessor.parser.address.IPAddress;
 import com.google.common.base.Throwables;
 import com.maxmind.geoip2.DatabaseReader;
-import com.maxmind.geoip2.exception.GeoIp2Exception;
 import com.maxmind.geoip2.model.CityResponse;
 
 import javax.annotation.Nonnull;

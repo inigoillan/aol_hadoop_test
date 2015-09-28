@@ -1,4 +1,4 @@
-package com.aol.logprocessor.parser;
+package com.aol.logprocessor.parser.address;
 
 import java.net.InetAddress;
 
