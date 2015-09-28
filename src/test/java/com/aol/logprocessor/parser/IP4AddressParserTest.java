@@ -28,6 +28,16 @@ public class IP4AddressParserTest {
         assertEquals(expectedAddress, address);
     }
 
+    @Test(expected = ParsingException.class)
+    public void Parse_GivenInvalidIP_ThrowParsingException() {
+        // Arrange
+        IP4AddressParser parser = new IP4AddressParser();
+        String ipAddress = "INVALID_IP";
+
+        // Act
+        IPAddress address = parser.parse(ipAddress);
+    }
+
     private InetAddress buildInetAddress(String ipAddress) {
         try {
             return Inet4Address.getByName(ipAddress);

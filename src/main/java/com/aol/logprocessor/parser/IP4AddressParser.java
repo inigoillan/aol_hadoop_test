@@ -18,9 +18,9 @@ public class IP4AddressParser implements AddressParser<IPAddress> {
         InetAddress inetAddress = null;
         try {
             inetAddress = Inet4Address.getByName(address);
-        } catch (UnknownHostException e) {
+        } catch (Exception e) {
             LOG.error(String.format("Couldn't parse: %s address", address));
-            Throwables.propagate(e);
+            throw new ParsingException();
         }
 
         return new IPAddress(inetAddress);
