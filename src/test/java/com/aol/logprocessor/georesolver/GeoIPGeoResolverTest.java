@@ -15,7 +15,7 @@ public class GeoIPGeoResolverTest {
     // IP Address are taken from:
     // http://www.nirsoft.net/countryip/gb.html
     @Test
-    public void GetCountry_GivenGBIP_ReturnsUK() throws ResolvingException {
+    public void ResolveLocation_GivenGBIP_ReturnsUK() throws ResolvingException {
         // Arrange
         InetAddress address = getInetAddress("2.24.1.1");
         GeoIPGeoResolver resolver = new GeoIPGeoResolver();
@@ -29,7 +29,7 @@ public class GeoIPGeoResolverTest {
     }
 
     @Test(expected = ResolvingException.class)
-    public void GetCountry_GivenInvalidIP_ThrowsResolvingException() throws ResolvingException {
+    public void ResolveLocation_GivenInvalidIP_ThrowsResolvingException() throws ResolvingException {
         // Arrange
         InetAddress address = getInetAddress("192.168.0.1");
         GeoIPGeoResolver resolver = new GeoIPGeoResolver();
