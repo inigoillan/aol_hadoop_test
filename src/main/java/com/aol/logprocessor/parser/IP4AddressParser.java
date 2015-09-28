@@ -6,6 +6,8 @@ import java.net.Inet4Address;
 import java.net.InetAddress;
 
 /**
+ * {@link AddressParser} for IPv4 addresses
+ *
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>
  * @since 1.0
  */
