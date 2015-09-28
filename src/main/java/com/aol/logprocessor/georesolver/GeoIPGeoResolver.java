@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 
 /**
- * Resolves an IP to a Geolocation
+ * {@link GeoResolver} class that uses the GeoIP database
  *
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>
  * @since 1.0
