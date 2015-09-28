@@ -1,11 +1,9 @@
 package com.aol.logprocessor.parser;
 
-import com.google.common.base.Throwables;
 import org.apache.log4j.Logger;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 /**
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>
