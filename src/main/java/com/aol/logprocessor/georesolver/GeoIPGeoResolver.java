@@ -50,9 +50,7 @@ public class GeoIPGeoResolver implements GeoResolver<IPAddress> {
         CityResponse city;
         try {
             city = dbReader.city(address);
-        } catch (IOException e) {
-            throw new ResolvingException();
-        } catch (GeoIp2Exception e) {
+        } catch (Exception e) {
             throw new ResolvingException();
         }
 
