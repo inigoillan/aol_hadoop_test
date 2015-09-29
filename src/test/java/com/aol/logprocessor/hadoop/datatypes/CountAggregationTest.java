@@ -12,6 +12,9 @@ import static org.junit.Assert.*;
  * @since 1.0
  */
 public class CountAggregationTest {
+
+    //region Write and ReadFields tests
+
     @Test
     public void WriteReadFields_GivenAValidOne_ReturnsEqualsTrueAfterDeserialization() throws IOException {
         // Arrange
@@ -23,6 +26,11 @@ public class CountAggregationTest {
         // Assert
         assertEquals(countAggregation, outputCountAggregation);
     }
+
+    //endregion
+
+
+    //region Increase tests
 
     @Test
     public void Increase_IncreaseOneCount_CountIsIncreasedEffectively() {
@@ -36,6 +44,11 @@ public class CountAggregationTest {
         // Assert
         assertEquals(1, outputCount);
     }
+
+    //endregion
+
+
+    //region Merge tests
 
     @Test
     public void Merge_GivenTwo_GetMergedCountAggregation() throws MergeException {
@@ -51,6 +64,21 @@ public class CountAggregationTest {
         assertEquals(expectedOutput, mergedAggregation);
     }
 
+    @Test(expected = MergeException.class)
+    public void Merge_GivenTwoDifferentSizedCountAggregations_ThrowsException() throws MergeException {
+        // Arrange
+        CountAggregation countAggregation1 = buildCountAggregation(3, 2);
+        CountAggregation countAggregation2 = buildCountAggregation(4, 1, 4);
+
+        // Act
+        countAggregation1.merge(Lists.newArrayList(countAggregation2));
+
+    }
+
+    //endregion
+
+
+    //region Helper methods
 
     private CountAggregation buildCountAggregation(long... counts) {
         CountAggregation countAggregation = new CountAggregation(counts.length);
@@ -81,4 +109,6 @@ public class CountAggregationTest {
 
         return outputCountAggregation;
     }
+
+    //endregion
 }
