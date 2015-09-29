@@ -13,8 +13,8 @@ import javax.annotation.Nonnull;
  * @since 1.0
  */
 public class AddressToCountryCode implements Transformation {
-    private GeoResolver resolver;
-    private AddressParser parser;
+    private final GeoResolver resolver;
+    private final AddressParser parser;
     private final int fieldIndex;
 
     public <K, T extends Address<K>> AddressToCountryCode(
