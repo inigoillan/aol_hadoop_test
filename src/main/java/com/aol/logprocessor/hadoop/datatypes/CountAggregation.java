@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.util.Arrays;
 
 /**
+ * Convenient class for count (like in SQL) aggregations
+ *
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>
  * @since 1.0
  */
