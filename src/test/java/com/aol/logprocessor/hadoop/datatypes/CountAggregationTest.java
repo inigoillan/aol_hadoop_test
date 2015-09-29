@@ -1,5 +1,6 @@
 package com.aol.logprocessor.hadoop.datatypes;
 
+import com.google.common.collect.Lists;
 import org.junit.Test;
 
 import java.io.*;
@@ -14,9 +15,7 @@ public class CountAggregationTest {
     @Test
     public void WriteReadFields_GivenAValidOne_ReturnsEqualsTrueAfterDeserialization() throws IOException {
         // Arrange
-        CountAggregation countAggregation = new CountAggregation(2);
-        countAggregation.increase(0);
-        countAggregation.increase(0);
+        CountAggregation countAggregation = buildCountAggregation(2, 0);
 
         // Act
         CountAggregation outputCountAggregation = callWriteAndRead(countAggregation);
@@ -36,6 +35,31 @@ public class CountAggregationTest {
 
         // Assert
         assertEquals(1, outputCount);
+    }
+
+    @Test
+    public void Merge_GivenTwo_GetMergedCountAggregation() throws MergeException {
+        // Arrange
+        CountAggregation countAggregation1 = buildCountAggregation(3, 2);
+        CountAggregation countAggregation2 = buildCountAggregation(4, 1);
+
+        // Act
+        CountAggregation mergedAggregation = countAggregation1.merge(Lists.newArrayList(countAggregation2));
+
+        // Assert
+        CountAggregation expectedOutput = buildCountAggregation(7, 3);
+        assertEquals(expectedOutput, mergedAggregation);
+    }
+
+
+    private CountAggregation buildCountAggregation(long... counts) {
+        CountAggregation countAggregation = new CountAggregation(counts.length);
+
+        for (int i = 0; i < counts.length; i++) {
+            countAggregation.add(i, counts[i]);
+        }
+
+        return countAggregation;
     }
 
     private CountAggregation callWriteAndRead(CountAggregation countAggregation) throws IOException {

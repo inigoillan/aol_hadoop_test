@@ -1,5 +1,6 @@
 package com.aol.logprocessor.hadoop.datatypes;
 
+import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
 import org.apache.hadoop.io.VIntWritable;
 import org.apache.hadoop.io.VLongWritable;
@@ -15,7 +16,7 @@ import java.util.Arrays;
  * @since 1.0
  */
 public class CountAggregation implements Writable {
-    public long[] counts;
+    private long[] counts;
 
     public CountAggregation() {}
 
@@ -24,28 +25,61 @@ public class CountAggregation implements Writable {
     }
 
     public void increase(int bucket) {
-        Preconditions.checkArgument(bucket < counts.length,
+        Preconditions.checkArgument(bucket < getLength(),
                 "The bucket is greater than the specificied count of aggregations");
 
         counts[bucket]++;
     }
 
+    public void add(int bucket, long count) {
+        Preconditions.checkArgument(bucket < getLength(),
+                "The bucket is greater than the specificied count of aggregations");
+
+        counts[bucket] += count;
+    }
+
     public long getCount(int bucket) {
-        Preconditions.checkArgument(bucket < counts.length,
+        Preconditions.checkArgument(bucket < getLength(),
                 "The bucket is greater than the specified number count of aggregations");
 
         return counts[bucket];
     }
 
+    public int getLength() {
+        return this.counts.length;
+    }
+
+    public CountAggregation merge(Iterable<CountAggregation> countAggregations) throws MergeException {
+        CountAggregation mergedCountAggregation = new CountAggregation(getLength());
+
+        this.addAll(this, mergedCountAggregation);
+
+        for (CountAggregation countAggregation : countAggregations) {
+            if (countAggregation.getLength() != getLength()) {
+                throw new MergeException();
+            }
+
+            this.addAll(countAggregation, mergedCountAggregation);
+        }
+
+        return mergedCountAggregation;
+    }
+
+    private void addAll(CountAggregation countAggregation, CountAggregation mergedCountAggregation) {
+        for (int i = 0; i < countAggregation.getLength(); i++) {
+            mergedCountAggregation.counts[i] += countAggregation.counts[i];
+        }
+    }
+
     @Override
     public void write(DataOutput dataOutput) throws IOException {
-        VIntWritable sizeWritable = new VIntWritable(counts.length);
+        VIntWritable sizeWritable = new VIntWritable(getLength());
 
         sizeWritable.write(dataOutput);
 
         VLongWritable longWritable = new VLongWritable();
 
-        for (int i = 0; i < counts.length; i++) {
+        for (int i = 0; i < getLength(); i++) {
             longWritable.set(counts[i]);
             longWritable.write(dataOutput);
         }
@@ -61,7 +95,7 @@ public class CountAggregation implements Writable {
 
         VLongWritable longWritable = new VLongWritable();
 
-        for (int i = 0; i < counts.length; i++) {
+        for (int i = 0; i < getLength(); i++) {
             longWritable.readFields(dataInput);
             counts[i] = longWritable.get();
         }
@@ -78,5 +112,12 @@ public class CountAggregation implements Writable {
         CountAggregation other = (CountAggregation) o;
 
         return Arrays.equals(this.counts, other.counts);
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this.getClass())
+                .add("Counts", Arrays.toString(counts))
+                .toString();
     }
 }
