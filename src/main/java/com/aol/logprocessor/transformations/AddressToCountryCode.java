@@ -7,7 +7,7 @@ import com.aol.logprocessor.parser.address.AddressParser;
 import javax.annotation.Nonnull;
 
 /**
- * Transform the given field into a country code.
+ * Transforms the given field into a country code.
  *
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>
  * @since 1.0
