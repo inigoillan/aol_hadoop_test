@@ -49,6 +49,13 @@ public class CountAggregation implements Writable {
         return this.counts.length;
     }
 
+    /**
+     * Merges by adding this and all the elements in countAggregations into a new CountAggregation class
+     *
+     * @param countAggregations All the elements to be merged
+     * @return All the elements merged
+     * @throws MergeException If the elements couldn't be merged, this exception is thrown
+     */
     public CountAggregation merge(Iterable<CountAggregation> countAggregations) throws MergeException {
         CountAggregation mergedCountAggregation = new CountAggregation(getLength());
 
