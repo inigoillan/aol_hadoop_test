@@ -25,9 +25,8 @@ public class CountAggregation implements Writable {
 
     public void increase(int bucket) {
         Preconditions.checkArgument(bucket < counts.length,
-                "The bucket is greater than the specificied number of aggregations");
+                "The bucket is greater than the specificied count of aggregations");
 
-        System.out.println(counts[bucket]);
         counts[bucket]++;
     }
 
