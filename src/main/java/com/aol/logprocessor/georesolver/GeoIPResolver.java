@@ -16,15 +16,15 @@ import java.net.InetAddress;
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>
  * @since 1.0
  */
-public class GeoIPGeoResolver implements GeoResolver<IPAddress> {
+public class GeoIPResolver implements GeoResolver<IPAddress> {
 
     private final DatabaseReader dbReader;
 
-    public GeoIPGeoResolver() {
+    public GeoIPResolver() {
         this(new File("./GeoLite2-City.mmdb"));
     }
 
-    public GeoIPGeoResolver(File database) {
+    public GeoIPResolver(File database) {
         DatabaseReader.Builder builder = new DatabaseReader.Builder(database);
         DatabaseReader reader = null;
 

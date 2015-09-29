@@ -10,7 +10,7 @@ import java.net.UnknownHostException;
 import static org.junit.Assert.*;
 
 
-public class GeoIPGeoResolverTest {
+public class GeoIPResolverTest {
 
     // IP Address are taken from:
     // http://www.nirsoft.net/countryip/gb.html
@@ -18,7 +18,7 @@ public class GeoIPGeoResolverTest {
     public void ResolveLocation_GivenGBIP_ReturnsUK() throws ResolvingException {
         // Arrange
         IPAddress address = getInetAddress("2.24.1.1");
-        GeoIPGeoResolver resolver = new GeoIPGeoResolver();
+        GeoIPResolver resolver = new GeoIPResolver();
 
         // Act
         GeoLocation country = resolver.resolveLocation(address);
@@ -32,7 +32,7 @@ public class GeoIPGeoResolverTest {
     public void ResolveLocation_GivenInvalidIP_ThrowsResolvingException() throws ResolvingException {
         // Arrange
         IPAddress address = getInetAddress("192.168.0.1");
-        GeoIPGeoResolver resolver = new GeoIPGeoResolver();
+        GeoIPResolver resolver = new GeoIPResolver();
 
         // Act
         resolver.resolveLocation(address);
