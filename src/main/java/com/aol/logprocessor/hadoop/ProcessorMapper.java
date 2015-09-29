@@ -1,12 +1,14 @@
 package com.aol.logprocessor.hadoop;
 
+import com.aol.logprocessor.hadoop.datatypes.AggregationKey;
+import com.aol.logprocessor.hadoop.datatypes.CountAggregation;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;
 
-class ProcessorMapper extends Mapper<LongWritable, Text, LongWritable, Text> {
+class ProcessorMapper extends Mapper<LongWritable, Text, AggregationKey, CountAggregation> {
 
     @Override
     protected void setup(Context context) throws IOException, InterruptedException {
@@ -22,6 +24,8 @@ class ProcessorMapper extends Mapper<LongWritable, Text, LongWritable, Text> {
         // it's important to us you demonstrate your object oriented design skills
         // how you handle errors and exceptions is also important
 
-        context.write(key, line);
+        AggregationKey keyout = new AggregationKey("a");
+
+        context.write(keyout, new CountAggregation(1));
     }
 }
