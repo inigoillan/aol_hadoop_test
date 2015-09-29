@@ -1,7 +1,6 @@
 package com.aol.logprocessor.transformations;
 
 import com.aol.logprocessor.georesolver.GeoResolver;
-import com.aol.logprocessor.georesolver.ResolvingException;
 import com.aol.logprocessor.parser.address.Address;
 import com.aol.logprocessor.parser.address.AddressParser;
 
