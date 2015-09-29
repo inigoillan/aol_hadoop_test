@@ -31,6 +31,13 @@ public class CountAggregation implements Writable {
         counts[bucket]++;
     }
 
+    public long getCount(int bucket) {
+        Preconditions.checkArgument(bucket < counts.length,
+                "The bucket is greater than the specified number count of aggregations");
+
+        return counts[bucket];
+    }
+
     @Override
     public void write(DataOutput dataOutput) throws IOException {
         VIntWritable sizeWritable = new VIntWritable(counts.length);

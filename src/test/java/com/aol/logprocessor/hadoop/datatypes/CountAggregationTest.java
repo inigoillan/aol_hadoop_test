@@ -25,6 +25,19 @@ public class CountAggregationTest {
         assertEquals(countAggregation, outputCountAggregation);
     }
 
+    @Test
+    public void Increase_IncreaseOneCount_CountIsIncreasedEffectively() {
+        // Arrange
+        CountAggregation countAggregation = new CountAggregation(1);
+
+        // Act
+        countAggregation.increase(0);
+        long outputCount = countAggregation.getCount(0);
+
+        // Assert
+        assertEquals(1, outputCount);
+    }
+
     private CountAggregation callWriteAndRead(CountAggregation countAggregation) throws IOException {
         CountAggregation outputCountAggregation = new CountAggregation();
 
