@@ -9,6 +9,9 @@ import static org.junit.Assert.*;
  * @since 1.0
  */
 public class GeoLocationTest {
+
+    //region Equals tests
+
     @Test
     public void Equals_SameObjects_ReturnsTrue() {
         // Arrange
@@ -58,5 +61,7 @@ public class GeoLocationTest {
         // Assert
         assertEquals(false, equals);
     }
+
+    //endregion
 
 }

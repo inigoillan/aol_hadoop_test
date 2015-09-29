@@ -9,6 +9,9 @@ import static org.junit.Assert.*;
  * @since 1.0
  */
 public class CSVParserTest {
+
+    //region Parse methods
+
     @Test
     public void Parse_GivenCSV_ReturnParsed() {
         // Arrange
@@ -34,6 +37,8 @@ public class CSVParserTest {
         String[] expected = new String[] {"a", "b"};
         assertArrayEquals(expected, parsedLine);
     }
+
+    //endregion
 
 
 }

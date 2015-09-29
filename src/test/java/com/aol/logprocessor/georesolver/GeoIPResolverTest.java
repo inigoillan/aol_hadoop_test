@@ -12,6 +12,9 @@ import static org.junit.Assert.*;
 
 public class GeoIPResolverTest {
 
+
+    //region ResolveLocation tests
+
     // IP Address are taken from:
     // http://www.nirsoft.net/countryip/gb.html
     @Test
@@ -38,6 +41,10 @@ public class GeoIPResolverTest {
         resolver.resolveLocation(address);
     }
 
+    //endregion
+
+
+    //region Helper methods
 
     private GeoLocation buildLocation(String countryCode) {
         return new GeoLocation(countryCode);
@@ -53,4 +60,6 @@ public class GeoIPResolverTest {
         // Just to make the compiler happy
         return null;
     }
+
+    //endregion
 }

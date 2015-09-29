@@ -17,6 +17,8 @@ import static org.junit.Assert.*;
  */
 public class IP4AddressParserTest {
 
+    //region Parse tests
+
     @Test
     public void Parse_GivenValidIP_ReturnAddress() {
         // Arrange
@@ -41,6 +43,11 @@ public class IP4AddressParserTest {
         IPAddress address = parser.parse(ipAddress);
     }
 
+    //endregion
+
+
+    //region Helper methods
+
     private InetAddress buildInetAddress(String ipAddress) {
         try {
             return Inet4Address.getByName(ipAddress);
@@ -50,5 +57,7 @@ public class IP4AddressParserTest {
 
         return null;
     }
+
+    //endregion
 
 }
