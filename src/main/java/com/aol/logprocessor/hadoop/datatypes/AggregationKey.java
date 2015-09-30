@@ -1,5 +1,6 @@
 package com.aol.logprocessor.hadoop.datatypes;
 
+import com.aol.logprocessor.aggregations.AggregationFields;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.WritableComparable;
 
@@ -15,7 +16,7 @@ import java.util.Arrays;
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>
  * @since 1.0
  */
-public class AggregationKey implements WritableComparable<AggregationKey> {
+public class AggregationKey implements WritableComparable<AggregationKey>, AggregationFields {
     String[] keys;
 
     /**
@@ -25,6 +26,12 @@ public class AggregationKey implements WritableComparable<AggregationKey> {
 
     public AggregationKey(@Nonnull String... keys) {
         this.keys = keys;
+    }
+
+    @Nonnull
+    @Override
+    public String[] getFields() {
+        return keys;
     }
 
     @Override

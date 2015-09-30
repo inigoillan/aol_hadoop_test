@@ -1,11 +1,13 @@
 package com.aol.logprocessor.hadoop.datatypes;
 
+import com.aol.logprocessor.aggregations.Counters;
 import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
 import org.apache.hadoop.io.VIntWritable;
 import org.apache.hadoop.io.VLongWritable;
 import org.apache.hadoop.io.Writable;
 
+import javax.annotation.Nonnull;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
@@ -17,7 +19,7 @@ import java.util.Arrays;
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>
  * @since 1.0
  */
-public class CountAggregation implements Writable {
+public class CountAggregation implements Writable, Counters {
     private long[] counts;
 
     public CountAggregation() {}
@@ -56,6 +58,12 @@ public class CountAggregation implements Writable {
                 "The bucket is greater than the specified number count of aggregations");
 
         return counts[bucket];
+    }
+
+    @Nonnull
+    @Override
+    public long[] getCounters() {
+        return new long[0];
     }
 
     public int getLength() {
