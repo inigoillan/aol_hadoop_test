@@ -19,6 +19,7 @@ public class CSVParser implements RecordParser {
     }
 
     @Override
+    @Nonnull
     public String[] parse(String row) {
         Iterable<String> splitted = splitter.split(row);
 
