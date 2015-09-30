@@ -1,18 +1,18 @@
 package com.aol.logprocessor.configuration;
 
 import com.aol.logprocessor.parser.input.CSVParserConfig;
+import com.aol.logprocessor.printer.CSVPrinterConfig;
 import com.aol.logprocessor.transformations.AddressToCountryCodeConfig;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
-import java.util.List;
 import java.util.Map;
 
 /**
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>
  * @since 1.0
  */
-public class Config implements AddressToCountryCodeConfig, CSVParserConfig {
+public class Config implements AddressToCountryCodeConfig, CSVParserConfig, CSVPrinterConfig {
 
     private final Map<String, Object> config;
 
@@ -33,4 +33,8 @@ public class Config implements AddressToCountryCodeConfig, CSVParserConfig {
     }
 
 
+    @Override
+    public String getOutputSeparator() {
+        return (String) ((Map) config.get("output")).get("separator");
+    }
 }

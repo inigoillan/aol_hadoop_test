@@ -36,13 +36,29 @@ public class ConfigTest {
         assertEquals(",", separator);
     }
 
+    @Test
+    public void GetOutputSeparator_CorrectConfig_LoadedCorrectly() {
+        // Arrange
+        Config config = new Config(getConfigStream());
+
+        // Act
+        String separator = config.getOutputSeparator();
+
+        // Assert
+        assertEquals(",", separator);
+    }
+
 
     private InputStream getConfigStream() {
         String yaml =
                 "input:\n" +
                 "  separator: \",\"\n" +
+                "\n" +
                 "address:\n" +
-                "  field: 1";
+                "  field: 1\n" +
+                "\n" +
+                "output:\n" +
+                "  separator: \",\"";
 
         InputStream inputStream = new ByteArrayInputStream(yaml.getBytes());
 
