@@ -28,11 +28,7 @@ public class CountAggregation implements Writable, Counters {
         counts = new long[numberAggregations];
     }
 
-    /**
-     * Increases by one the count in the given bucket
-     *
-     * @param bucket
-     */
+    @Override
     public void increase(int bucket) {
         Preconditions.checkArgument(bucket < getLength(),
                 "The bucket is greater than the specificied count of aggregations");
@@ -40,12 +36,7 @@ public class CountAggregation implements Writable, Counters {
         counts[bucket]++;
     }
 
-    /**
-     * Adds the specified count into the given bucket
-     *
-     * @param bucket
-     * @param count
-     */
+    @Override
     public void add(int bucket, long count) {
         Preconditions.checkArgument(bucket < getLength(),
                 "The bucket is greater than the specificied count of aggregations");
