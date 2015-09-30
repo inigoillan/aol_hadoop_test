@@ -17,7 +17,7 @@ import java.util.Arrays;
  * @since 1.0
  */
 public class AggregationKey implements WritableComparable<AggregationKey>, AggregationFields {
-    String[] keys;
+    private String[] keys;
 
     /**
      * Don't use this constructor. This is meant for serializing and deserializing purposes
