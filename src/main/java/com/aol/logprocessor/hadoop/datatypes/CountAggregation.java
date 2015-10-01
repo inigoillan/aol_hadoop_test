@@ -1,6 +1,7 @@
 package com.aol.logprocessor.hadoop.datatypes;
 
 import com.aol.logprocessor.aggregations.Counters;
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
 import org.apache.hadoop.io.VIntWritable;
@@ -133,8 +134,13 @@ public class CountAggregation implements Writable, Counters {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this.getClass())
+        return MoreObjects.toStringHelper(this.getClass())
                 .add("Counts", Arrays.toString(counts))
                 .toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(this.getCounters());
     }
 }
