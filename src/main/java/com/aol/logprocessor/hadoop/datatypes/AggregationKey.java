@@ -1,7 +1,7 @@
 package com.aol.logprocessor.hadoop.datatypes;
 
 import com.aol.logprocessor.aggregations.AggregationFields;
-import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.WritableComparable;
 
@@ -10,7 +10,6 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Objects;
 
 /**
  * Set of keys use for the aggregation. Take into account that the order of the keys passed into the constructor, matters
@@ -80,7 +79,7 @@ public class AggregationKey implements WritableComparable<AggregationKey>, Aggre
 
     @Override
     public int hashCode() {
-        return Objects.hash(keys);
+        return Objects.hashCode(keys);
     }
 
     @Override
@@ -98,7 +97,7 @@ public class AggregationKey implements WritableComparable<AggregationKey>, Aggre
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(AggregationKey.class)
+        return Objects.toStringHelper(AggregationKey.class)
                 .add("Keys", Arrays.toString(this.getFields()))
                 .toString();
     }
