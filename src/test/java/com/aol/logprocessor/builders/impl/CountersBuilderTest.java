@@ -30,7 +30,7 @@ public class CountersBuilderTest {
         ArrayList<String> columnValues = Lists.newArrayList("a", "b");
 
         CountersBuilderConfig config = getCountersBuilderConfig(0, columnValues);
-        CounterFactory factory = getCounterFactory();
+        CounterFactory factory = getCounterFactory(columnValues.size());
 
         CountersBuilder countersBuilder = new CountersBuilder(config, factory);
 
@@ -38,7 +38,7 @@ public class CountersBuilderTest {
         Counters outputCounters = countersBuilder.buildCounters(new String[] {"a"});
 
         // Assert
-        CountersStub expectedCounters = new CountersStub();
+        CountersStub expectedCounters = new CountersStub(columnValues.size());
         expectedCounters.add(0, 1);
 
         assertEquals(outputCounters, expectedCounters);
@@ -57,12 +57,12 @@ public class CountersBuilderTest {
         return config;
     }
 
-    private CounterFactory getCounterFactory() {
+    private CounterFactory getCounterFactory(final int numberCounters) {
         CounterFactory factory = mock(CounterFactory.class);
         when(factory.getAggregationCounters()).thenAnswer(new Answer<Counters>() {
             @Override
             public Counters answer(InvocationOnMock invocationOnMock) throws Throwable {
-                return new CountersStub();
+                return new CountersStub(numberCounters);
             }
         });
         return factory;

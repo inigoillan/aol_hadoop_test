@@ -7,9 +7,10 @@ package com.aol.logprocessor.builders;
 
 import com.aol.logprocessor.aggregations.Counters;
 
+import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 
 public interface CounterFactory<T extends Counters> {
     @Nonnull
-    T getAggregationCounters();
+    T getAggregationCounters(@Nonnegative int numberOfCounters);
 }

@@ -10,8 +10,11 @@ import java.util.Arrays;
  * @since 1.0
  */
 public class CountersStub implements Counters {
-    private long[] counters = new long[1024];
+    private long[] counters;
 
+    public CountersStub(int numberCounters) {
+        counters = new long[numberCounters];
+    }
 
     @Override
     public void increase(int bucket) {
