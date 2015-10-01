@@ -6,7 +6,6 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
@@ -20,6 +19,8 @@ public class ProcessorJob extends Configured implements Tool {
     public int run(String[] args) throws Exception {
 
         Configuration conf = new Configuration();
+        conf.set("com.aol.logprocessor.hadoop.config.file", "config.yml");
+
         Job job = Job.getInstance(conf, "Log Processor");
         job.setJarByClass(Application.class);
 
@@ -27,7 +28,7 @@ public class ProcessorJob extends Configured implements Tool {
         FileInputFormat.addInputPath(job, new Path("input-data.log"));
 
         // set output path
-        Path outputPath = new Path("target/output");
+        Path outputPath = new Path("output");
         FileSystem fs = FileSystem.get(conf);
         fs.delete(outputPath, false);
         FileOutputFormat.setOutputPath(job, outputPath);
