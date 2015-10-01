@@ -14,6 +14,8 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.util.Tool;
 
+import java.net.URI;
+
 public class ProcessorJob extends Configured implements Tool {
 
     public int run(String[] args) throws Exception {
@@ -23,6 +25,9 @@ public class ProcessorJob extends Configured implements Tool {
 
         Job job = Job.getInstance(conf, "Log Processor");
         job.setJarByClass(Application.class);
+
+        job.addCacheFile(new URI("./config.yml"));
+        job.addCacheFile(new URI("./GeoLite2-City.mmdb"));
 
         // set input path
         FileInputFormat.addInputPath(job, new Path("input-data.log"));
