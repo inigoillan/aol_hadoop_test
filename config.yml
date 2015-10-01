@@ -1,0 +1,14 @@
+input:
+  separator: ","
+
+address:
+  field: 1
+
+output:
+  separator: ","
+  print: [view, impression, click]
+
+aggregate:
+  fields: [0, 1]
+  on_field: 2
+
