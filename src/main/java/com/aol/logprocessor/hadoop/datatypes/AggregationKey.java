@@ -1,6 +1,7 @@
 package com.aol.logprocessor.hadoop.datatypes;
 
 import com.aol.logprocessor.aggregations.AggregationFields;
+import com.google.common.base.MoreObjects;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.WritableComparable;
 
@@ -93,5 +94,12 @@ public class AggregationKey implements WritableComparable<AggregationKey>, Aggre
         AggregationKey other = (AggregationKey) o;
 
         return Arrays.equals(this.keys, other.keys);
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(AggregationKey.class)
+                .add("Keys", Arrays.toString(this.getFields()))
+                .toString();
     }
 }
