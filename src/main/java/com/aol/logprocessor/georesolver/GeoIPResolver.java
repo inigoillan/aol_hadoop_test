@@ -21,8 +21,8 @@ public class GeoIPResolver implements GeoResolver<IPAddress> {
 
     private final DatabaseReader dbReader;
 
-    public GeoIPResolver() {
-        this(new File("./GeoLite2-City.mmdb"));
+    public GeoIPResolver(@Nonnull GeoIPResolverConfig config) {
+        this(new File(config.getGeoIPDatabaseFilename()));
     }
 
     public GeoIPResolver(InputStream database) {

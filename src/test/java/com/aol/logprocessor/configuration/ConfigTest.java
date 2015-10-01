@@ -90,6 +90,18 @@ public class ConfigTest {
         assertArrayEquals(expected, counters);
     }
 
+    @Test
+    public void GetGeoIPDatabaseFilename_CorrectConfig_LoadedCorrectly() {
+        // Arrange
+        Config config = new Config(getConfigStream());
+
+        // Act
+        String database = config.getGeoIPDatabaseFilename();
+
+        // Assert
+        assertEquals("./GeoLite2-City.mmdb", database);
+    }
+
 
     private InputStream getConfigStream() {
         String yaml =
@@ -105,7 +117,9 @@ public class ConfigTest {
                 "\n" +
                 "aggregate:\n" +
                 "  fields: [0, 1]\n" +
-                "  on_field: 2";
+                "  on_field: 2\n" +
+                "geoip:\n" +
+                "  database: \"./GeoLite2-City.mmdb\"";
 
         InputStream inputStream = new ByteArrayInputStream(yaml.getBytes());
 

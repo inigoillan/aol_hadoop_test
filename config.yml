@@ -12,3 +12,5 @@ aggregate:
   fields: [0, 1]
   on_field: 2
 
+geoip:
+  database: "./GeoLite2-City.mmdb"
