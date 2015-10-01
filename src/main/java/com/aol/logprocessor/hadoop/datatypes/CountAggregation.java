@@ -71,8 +71,6 @@ public class CountAggregation implements Writable, Counters {
     public CountAggregation merge(Iterable<CountAggregation> countAggregations) throws MergeException {
         CountAggregation mergedCountAggregation = new CountAggregation(getLength());
 
-        this.addAll(this, mergedCountAggregation);
-
         for (CountAggregation countAggregation : countAggregations) {
             if (countAggregation.getLength() != getLength()) {
                 throw new MergeException();

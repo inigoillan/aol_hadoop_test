@@ -57,7 +57,7 @@ public class CountAggregationTest {
         CountAggregation countAggregation2 = buildCountAggregation(4, 1);
 
         // Act
-        CountAggregation mergedAggregation = countAggregation1.merge(Lists.newArrayList(countAggregation2));
+        CountAggregation mergedAggregation = countAggregation1.merge(Lists.newArrayList(countAggregation1, countAggregation2));
 
         // Assert
         CountAggregation expectedOutput = buildCountAggregation(7, 3);
@@ -71,7 +71,7 @@ public class CountAggregationTest {
         CountAggregation countAggregation2 = buildCountAggregation(4, 1, 4);
 
         // Act
-        countAggregation1.merge(Lists.newArrayList(countAggregation2));
+        countAggregation1.merge(Lists.newArrayList(countAggregation1, countAggregation2));
 
     }
 
