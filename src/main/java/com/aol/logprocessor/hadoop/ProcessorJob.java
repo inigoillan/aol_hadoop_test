@@ -43,6 +43,8 @@ public class ProcessorJob extends Configured implements Tool {
         job.setMapOutputKeyClass(AggregationKey.class);
         job.setMapOutputValueClass(CountAggregation.class);
 
+        job.setCombinerClass(ProcessorCombiner.class);
+
         job.setReducerClass(ProcessorReducer.class);
         job.setOutputValueClass(Text.class);
 
