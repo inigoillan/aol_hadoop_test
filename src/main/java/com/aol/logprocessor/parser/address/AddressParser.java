@@ -3,6 +3,8 @@ package com.aol.logprocessor.parser.address;
 import com.aol.logprocessor.parser.ParsingException;
 
 /**
+ * Parses an {@link Address}
+ *
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>
  * @since 1.0
  */
@@ -18,7 +20,7 @@ public interface AddressParser<T extends Address> {
     T parse(String address) throws ParsingException;
 
     /**
-     * Checks whether this parser can parse the given address
+     * Checks whether this parser is able to parse the given address
      *
      * @param address
      * @return

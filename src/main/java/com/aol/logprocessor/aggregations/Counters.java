@@ -3,6 +3,8 @@ package com.aol.logprocessor.aggregations;
 import javax.annotation.Nonnull;
 
 /**
+ * This class represents a list of counters
+ *
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>
  * @since 1.0
  */
