@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -30,7 +31,7 @@ public class CountersBuilderTest {
         ArrayList<String> columnValues = Lists.newArrayList("a", "b");
 
         CountersBuilderConfig config = getCountersBuilderConfig(0, columnValues);
-        CounterFactory factory = getCounterFactory(columnValues.size());
+        CounterFactory factory = getCounterFactory();
 
         CountersBuilder countersBuilder = new CountersBuilder(config, factory);
 
@@ -57,12 +58,14 @@ public class CountersBuilderTest {
         return config;
     }
 
-    private CounterFactory getCounterFactory(final int numberCounters) {
+    private CounterFactory getCounterFactory() {
         CounterFactory factory = mock(CounterFactory.class);
-        when(factory.getAggregationCounters()).thenAnswer(new Answer<Counters>() {
+        when(factory.getAggregationCounters(anyInt())).thenAnswer(new Answer<Counters>() {
             @Override
             public Counters answer(InvocationOnMock invocationOnMock) throws Throwable {
-                return new CountersStub(numberCounters);
+                int numberOfCounters = (int) invocationOnMock.getArguments()[0];
+
+                return new CountersStub(numberOfCounters);
             }
         });
         return factory;

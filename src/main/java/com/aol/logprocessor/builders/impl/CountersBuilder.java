@@ -40,7 +40,7 @@ public class CountersBuilder<T extends Counters> implements com.aol.logprocessor
         Preconditions.checkArgument(this.fieldIndex < fields.length);
 
         String field = fields[this.fieldIndex];
-        T counters = factory.getAggregationCounters();
+        T counters = factory.getAggregationCounters(fields.length);
 
         if (countersMapping.containsKey(field)) {
             int index = countersMapping.get(field);
