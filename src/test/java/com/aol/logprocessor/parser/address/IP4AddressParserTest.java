@@ -1,15 +1,13 @@
 package com.aol.logprocessor.parser.address;
 
 import com.aol.logprocessor.parser.ParsingException;
-import com.aol.logprocessor.parser.address.IP4AddressParser;
-import com.aol.logprocessor.parser.address.IPAddress;
 import com.google.api.client.repackaged.com.google.common.base.Throwables;
 import org.junit.Test;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>

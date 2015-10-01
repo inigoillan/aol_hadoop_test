@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.io.*;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>

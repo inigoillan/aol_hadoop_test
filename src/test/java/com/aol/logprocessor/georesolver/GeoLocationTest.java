@@ -2,7 +2,7 @@ package com.aol.logprocessor.georesolver;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>

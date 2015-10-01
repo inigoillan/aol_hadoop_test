@@ -5,7 +5,6 @@ import com.aol.logprocessor.builders.KeyFactory;
 import com.google.api.client.util.Lists;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

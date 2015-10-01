@@ -8,12 +8,10 @@ import com.aol.logprocessor.parser.address.Address;
 import com.aol.logprocessor.parser.address.AddressParser;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 /**
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>
