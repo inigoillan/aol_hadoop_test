@@ -11,4 +11,7 @@ import javax.annotation.Nonnull;
 public interface CountersBuilder<T extends Counters> {
     @Nonnull
     T buildCounters(@Nonnull String[] fields);
+
+    @Nonnull
+    T buildZeroCounters();
 }
