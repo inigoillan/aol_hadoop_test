@@ -27,8 +27,9 @@ public class AddressToCountryCodeTest {
 
         AddressParser<Address> parser = buildAddressParser();
         GeoResolver<Address> resolver = buildAddressGeoResolver(countryCode);
+        AddressToCountryCodeConfig config = getAddressToCountryCodeConfig(0);
 
-        AddressToCountryCode addressToCountryCode =  new AddressToCountryCode(resolver, parser, 0);
+        AddressToCountryCode addressToCountryCode =  new AddressToCountryCode(resolver, parser, config);
 
         // Act
         String[] input = new String[] {"0"};
@@ -46,10 +47,11 @@ public class AddressToCountryCodeTest {
 
         AddressParser<Address> parser = buildAddressParser();
         GeoResolver<Address> resolver = buildAddressGeoResolver(countryCode);
+        AddressToCountryCodeConfig config = getAddressToCountryCodeConfig(0);
 
         when(parser.parse(anyString())).thenThrow(ParsingException.class);
 
-        AddressToCountryCode addressToCountryCode =  new AddressToCountryCode(resolver, parser, 0);
+        AddressToCountryCode addressToCountryCode =  new AddressToCountryCode(resolver, parser, config);
 
         // Act
         String[] input = new String[] {"0"};
@@ -61,13 +63,17 @@ public class AddressToCountryCodeTest {
         return mock(AddressParser.class, RETURNS_DEEP_STUBS);
     }
 
-
-
     private GeoResolver<Address> buildAddressGeoResolver(String countryCode) throws ResolvingException {
         GeoResolver<Address> resolver = mock(GeoResolver.class);
         when(resolver.resolveLocation(any(Address.class))).thenReturn(new GeoLocation(countryCode));
 
         return resolver;
+    }
+
+    private AddressToCountryCodeConfig getAddressToCountryCodeConfig(int addressField) {
+        AddressToCountryCodeConfig config = mock(AddressToCountryCodeConfig.class);
+        when(config.getAddressField()).thenReturn(addressField);
+        return config;
     }
 
 }

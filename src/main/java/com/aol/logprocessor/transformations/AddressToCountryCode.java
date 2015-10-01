@@ -20,9 +20,9 @@ public class AddressToCountryCode implements Transformation {
     public <K, T extends Address<K>> AddressToCountryCode(
                     @Nonnull GeoResolver<T> resolver,
                     @Nonnull AddressParser<T> addressParser,
-                    int fieldIndex) {
+                    @Nonnull AddressToCountryCodeConfig config) {
 
-        this.fieldIndex = fieldIndex;
+        this.fieldIndex = config.getAddressField();
         this.resolver = resolver;
         this.parser = addressParser;
     }
