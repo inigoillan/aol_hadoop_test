@@ -4,7 +4,6 @@ import com.aol.logprocessor.builders.CountersBuilder;
 import com.aol.logprocessor.builders.KeyBuilder;
 import com.aol.logprocessor.configuration.Config;
 import com.aol.logprocessor.georesolver.GeoIPResolver;
-import com.aol.logprocessor.georesolver.GeoResolver;
 import com.aol.logprocessor.hadoop.datatypes.AggregationKey;
 import com.aol.logprocessor.hadoop.datatypes.CountAggregation;
 import com.aol.logprocessor.hadoop.datatypes.KeyValueFactory;
@@ -43,7 +42,7 @@ class ProcessorMapper extends Mapper<LongWritable, Text, AggregationKey, CountAg
 
             parser = new CSVParser(config);
 
-            GeoIPResolver geoResolver = new GeoIPResolver();
+            GeoIPResolver geoResolver = new GeoIPResolver(config);
             IP4AddressParser addressParser = new IP4AddressParser();
             transformation = new AddressToCountryCode(geoResolver, addressParser, config);
             keyBuilder = new com.aol.logprocessor.builders.impl.KeyBuilder(config, factory);
