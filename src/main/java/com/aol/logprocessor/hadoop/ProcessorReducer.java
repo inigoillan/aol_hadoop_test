@@ -1,14 +1,14 @@
 package com.aol.logprocessor.hadoop;
 
+import com.aol.logprocessor.builders.impl.CountersBuilder;
 import com.aol.logprocessor.configuration.Config;
 import com.aol.logprocessor.hadoop.datatypes.AggregationKey;
 import com.aol.logprocessor.hadoop.datatypes.CountAggregation;
+import com.aol.logprocessor.hadoop.datatypes.KeyValueFactory;
 import com.aol.logprocessor.hadoop.datatypes.MergeException;
-import com.aol.logprocessor.parser.input.CSVParser;
 import com.aol.logprocessor.printer.CSVPrinter;
 import com.aol.logprocessor.printer.Printer;
 import com.google.common.collect.Iterables;
-import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
@@ -22,6 +22,7 @@ class ProcessorReducer extends Reducer<AggregationKey, CountAggregation, NullWri
     private final static Logger LOG = Logger.getLogger(ProcessorReducer.class);
     private Printer printer;
     private final Text text = new Text();
+    private CountersBuilder<CountAggregation> countersBuilder;
 
     @Override
     protected void setup(Context context) throws InterruptedException, IOException {
@@ -31,12 +32,16 @@ class ProcessorReducer extends Reducer<AggregationKey, CountAggregation, NullWri
             Config config = new Config(configFile);
 
             printer = new CSVPrinter(config);
+
+            KeyValueFactory factory = new KeyValueFactory();
+            countersBuilder = new CountersBuilder(config, factory);
         }
+
     }
 
     @Override
     protected void reduce(AggregationKey key, Iterable<CountAggregation> values, Context context) throws InterruptedException, IOException {
-        CountAggregation countAggregation = Iterables.getFirst(values, null);
+        CountAggregation countAggregation = countersBuilder.buildZeroCounters();
 
         try {
             CountAggregation mergedCounters = countAggregation.merge(values);
