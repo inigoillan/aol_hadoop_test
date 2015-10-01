@@ -8,6 +8,7 @@ import com.maxmind.geoip2.model.CityResponse;
 import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.InetAddress;
 
 /**
@@ -22,6 +23,19 @@ public class GeoIPResolver implements GeoResolver<IPAddress> {
 
     public GeoIPResolver() {
         this(new File("./GeoLite2-City.mmdb"));
+    }
+
+    public GeoIPResolver(InputStream database) {
+        DatabaseReader.Builder builder = new DatabaseReader.Builder(database);
+        DatabaseReader reader = null;
+
+        try {
+            reader = builder.build();
+        } catch (IOException e) {
+            Throwables.propagate(e);
+        }
+
+        this.dbReader = reader;
     }
 
     public GeoIPResolver(File database) {

@@ -4,10 +4,13 @@ import com.aol.logprocessor.parser.address.IPAddress;
 import com.google.common.base.Throwables;
 import org.junit.Test;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.net.Inet4Address;
 import java.net.UnknownHostException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 
 public class GeoIPResolverTest {
@@ -15,13 +18,13 @@ public class GeoIPResolverTest {
 
     //region ResolveLocation tests
 
-    // IP Address are taken from:
+    // IP Addresses are taken from:
     // http://www.nirsoft.net/countryip/gb.html
     @Test
     public void ResolveLocation_GivenGBIP_ReturnsUK() throws ResolvingException {
         // Arrange
         IPAddress address = getInetAddress("2.24.1.1");
-        GeoIPResolver resolver = new GeoIPResolver();
+        GeoIPResolver resolver = new GeoIPResolver(getDatabaseInputStream());
 
         // Act
         GeoLocation country = resolver.resolveLocation(address);
@@ -35,7 +38,7 @@ public class GeoIPResolverTest {
     public void ResolveLocation_GivenInvalidIP_ThrowsResolvingException() throws ResolvingException {
         // Arrange
         IPAddress address = getInetAddress("192.168.0.1");
-        GeoIPResolver resolver = new GeoIPResolver();
+        GeoIPResolver resolver = new GeoIPResolver(getDatabaseInputStream());
 
         // Act
         resolver.resolveLocation(address);
@@ -59,6 +62,14 @@ public class GeoIPResolverTest {
 
         // Just to make the compiler happy
         return null;
+    }
+
+    private InputStream getDatabaseInputStream() {
+        try {
+            return new FileInputStream("./GeoLite2-City.mmdb");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     //endregion
