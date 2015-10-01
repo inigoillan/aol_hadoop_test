@@ -104,7 +104,8 @@ public class ConfigTest {
                 "  print: [views, impressions, clicks]\n" +
                 "\n" +
                 "aggregate:\n" +
-                "  fields: [0, 1]\n";
+                "  fields: [0, 1]\n" +
+                "  on_field: 2";
 
         InputStream inputStream = new ByteArrayInputStream(yaml.getBytes());
 
