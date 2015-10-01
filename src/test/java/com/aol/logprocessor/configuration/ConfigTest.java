@@ -60,7 +60,7 @@ public class ConfigTest {
         int numberOfCounters = config.getCounterField();
 
         // Assert
-        assertEquals(3, numberOfCounters);
+        assertEquals(2, numberOfCounters);
     }
 
     @Test
