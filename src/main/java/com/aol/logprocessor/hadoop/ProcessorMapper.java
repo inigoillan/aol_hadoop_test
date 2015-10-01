@@ -55,12 +55,8 @@ class ProcessorMapper extends Mapper<LongWritable, Text, AggregationKey, CountAg
     public void map(LongWritable key, Text line, Context context) throws IOException, InterruptedException {
         String[] parsedRecord = parser.parse(line.toString());
 
-        Logger.getLogger(ProcessorMapper.class).info(Arrays.toString(parsedRecord));
-
-        String[] geoResolvedRecord = new String[0];
-
         try {
-            geoResolvedRecord = transformation.transform(parsedRecord);
+            String[] geoResolvedRecord = transformation.transform(parsedRecord);
             AggregationKey aggregationKey = keyBuilder.buildKey(geoResolvedRecord);
             CountAggregation countAggregation = countersBuilder.buildCounters(geoResolvedRecord);
 
