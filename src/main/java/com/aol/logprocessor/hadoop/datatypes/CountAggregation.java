@@ -54,7 +54,7 @@ public class CountAggregation implements Writable, Counters {
     @Nonnull
     @Override
     public long[] getCounters() {
-        return new long[0];
+        return this.counts;
     }
 
     public int getLength() {
