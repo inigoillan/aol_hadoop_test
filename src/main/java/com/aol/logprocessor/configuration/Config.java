@@ -5,7 +5,7 @@ import com.aol.logprocessor.builders.impl.KeyBuilderConfig;
 import com.aol.logprocessor.parser.input.CSVParserConfig;
 import com.aol.logprocessor.printer.CSVPrinterConfig;
 import com.aol.logprocessor.transformations.AddressToCountryCodeConfig;
-import com.google.common.collect.Iterables;
+import org.apache.log4j.Logger;
 import org.yaml.snakeyaml.Yaml;
 
 import javax.annotation.Nonnull;
@@ -13,13 +13,13 @@ import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 /**
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>
  * @since 1.0
  */
 public class Config implements AddressToCountryCodeConfig, CSVParserConfig, CSVPrinterConfig, KeyBuilderConfig, CountersBuilderConfig {
+    private static final Logger LOG = Logger.getLogger(Config.class);
 
     private final Map<String, Object> config;
 
@@ -31,29 +31,49 @@ public class Config implements AddressToCountryCodeConfig, CSVParserConfig, CSVP
 
     @Override
     public String getInputSeparator() {
-        return (String) ((Map) config.get("input")).get("separator");
+        String value = (String) ((Map) config.get("input")).get("separator");
+
+        LOG.info(String.format("Read input separator with value: %s", value));
+
+        return value;
     }
 
     @Override
     public int getAddressField() {
-        return (int) ((Map) config.get("address")).get("field");
+        int value = (int) ((Map) config.get("address")).get("field");
+
+        LOG.info(String.format("Read address field with value: %d", value));
+
+        return value;
     }
 
 
     @Override
     public String getOutputSeparator() {
-        return (String) ((Map) config.get("output")).get("separator");
+        String value = (String) ((Map) config.get("output")).get("separator");
+
+        LOG.info(String.format("Read output separator with value: %s", value));
+
+        return value;
     }
 
     @Nonnull
     @Override
     public List<String> getCountersValues() {
-        return (List<String>) ((Map) config.get("output")).get("print");
+        List<String> value = (List<String>) ((Map) config.get("output")).get("print");
+
+        LOG.info(String.format("Read counters with values: %s", value));
+
+        return value;
     }
 
     @Override
     public int getCounterField() {
-        return getCountersValues().size();
+        int value = (int) ((Map) config.get("aggregate")).get("on_field");
+
+        LOG.info(String.format("Read number of counters with value: %d", value));
+
+        return value;
     }
 
     @Override
@@ -65,6 +85,8 @@ public class Config implements AddressToCountryCodeConfig, CSVParserConfig, CSVP
         for(int i = 0; i < keyIndexes.length; i++) {
             keyIndexes[i] = keyIndexesInConfig.get(i);
         }
+
+        LOG.info(String.format("Read key field indexes with values: %s", Arrays.toString(keyIndexes)));
 
         return keyIndexes;
     }
