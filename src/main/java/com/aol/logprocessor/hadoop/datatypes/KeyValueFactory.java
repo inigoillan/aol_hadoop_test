@@ -9,6 +9,8 @@ import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 
 /**
+ * Factory that generates {@link AggregationKey} and {@link CountAggregation} instances
+ *
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>
  * @since 1.0
  */

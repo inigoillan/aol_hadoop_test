@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Generates a new {@link Counters} instance for a given {@CountersBuilderConfig}
+ *
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>
  * @since 1.0
  */

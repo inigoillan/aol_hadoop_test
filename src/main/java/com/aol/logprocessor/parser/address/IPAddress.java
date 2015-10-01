@@ -3,6 +3,8 @@ package com.aol.logprocessor.parser.address;
 import java.net.InetAddress;
 
 /**
+ * An {@link Address} for {@link InetAddress} types
+ *
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>
  * @since 1.0
  */

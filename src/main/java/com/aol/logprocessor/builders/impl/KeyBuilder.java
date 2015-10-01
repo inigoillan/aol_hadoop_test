@@ -8,6 +8,8 @@ import javax.annotation.Nonnull;
 import java.util.List;
 
 /**
+ * Generates a new {@link AggregationFields} based on the given {@link KeyBuilderConfig}
+ *
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>
  * @since 1.0
  */

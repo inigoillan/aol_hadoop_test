@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
+ * Combiner for the Log Processing MapReduce program
+ *
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>
  * @since 1.0
  */

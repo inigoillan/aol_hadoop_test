@@ -18,7 +18,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-class ProcessorReducer extends Reducer<AggregationKey, CountAggregation, NullWritable, Text> {
+/**
+ * Reducer for the Log Processing MapReduce program
+ *
+ * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>
+ * @since 1.0
+ */
+public class ProcessorReducer extends Reducer<AggregationKey, CountAggregation, NullWritable, Text> {
     private final static Logger LOG = Logger.getLogger(ProcessorReducer.class);
     private Printer printer;
     private final Text text = new Text();

@@ -8,6 +8,8 @@ import org.apache.commons.lang.ArrayUtils;
 import javax.annotation.Nonnull;
 
 /**
+ * Class for converting a bunch of aggregations into a convenient comma(or any other kind) separated values string
+ *
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>
  * @since 1.0
  */

@@ -23,7 +23,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 
-class ProcessorMapper extends Mapper<LongWritable, Text, AggregationKey, CountAggregation> {
+/**
+ * Mapper for the Log Processing MapReduce program
+ *
+ * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>
+ * @since 1.0
+ */
+public class ProcessorMapper extends Mapper<LongWritable, Text, AggregationKey, CountAggregation> {
     private static final Logger LOG = Logger.getLogger(ProcessorMapper.class);
 
     private KeyBuilder<AggregationKey> keyBuilder;

@@ -6,6 +6,8 @@ import com.google.common.collect.Iterables;
 import javax.annotation.Nonnull;
 
 /**
+ * CSV Parser. Take into account this class supports any string as a separator
+ *
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>
  * @since 1.0
  */

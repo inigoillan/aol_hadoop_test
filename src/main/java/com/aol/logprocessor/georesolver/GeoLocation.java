@@ -5,6 +5,8 @@ import com.google.common.base.Objects;
 import javax.annotation.Nonnull;
 
 /**
+ * Represents a GeoLocation
+ *
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>
  * @since 1.0
  */

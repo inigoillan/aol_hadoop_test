@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Main configuration source backed by a YAML file
+ *
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>
  * @since 1.0
  */
