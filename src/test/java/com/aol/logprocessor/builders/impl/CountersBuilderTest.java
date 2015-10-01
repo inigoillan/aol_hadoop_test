@@ -19,7 +19,7 @@ import static org.mockito.Mockito.when;
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>
  * @since 1.0
  */
-public class CounterBuilderTest {
+public class CountersBuilderTest {
 
     //region BuildCounters tests
 
@@ -32,10 +32,10 @@ public class CounterBuilderTest {
         CountersBuilderConfig config = getCountersBuilderConfig(0, columnValues);
         CounterFactory factory = getCounterFactory();
 
-        CounterBuilder counterBuilder = new CounterBuilder(config, factory);
+        CountersBuilder countersBuilder = new CountersBuilder(config, factory);
 
         // Act
-        Counters outputCounters = counterBuilder.buildCounters(new String[] {"a"});
+        Counters outputCounters = countersBuilder.buildCounters(new String[] {"a"});
 
         // Assert
         CountersStub expectedCounters = new CountersStub();

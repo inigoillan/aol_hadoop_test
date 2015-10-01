@@ -2,7 +2,6 @@ package com.aol.logprocessor.builders.impl;
 
 import com.aol.logprocessor.aggregations.Counters;
 import com.aol.logprocessor.builders.CounterFactory;
-import com.aol.logprocessor.builders.CountersBuilder;
 import com.google.api.client.repackaged.com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
 
@@ -14,13 +13,13 @@ import java.util.Map;
  * @author <a href="mailto:inigo.illan@gmail.com">Inigo Illan</a>
  * @since 1.0
  */
-public class CounterBuilder<T extends Counters> implements CountersBuilder<T> {
+public class CountersBuilder<T extends Counters> implements com.aol.logprocessor.builders.CountersBuilder<T> {
 
     private final Map<String, Integer> countersMapping;
     private final int fieldIndex;
     private final CounterFactory<T> factory;
 
-    public CounterBuilder(@Nonnull CountersBuilderConfig config, @Nonnull CounterFactory<T> factory) {
+    public CountersBuilder(@Nonnull CountersBuilderConfig config, @Nonnull CounterFactory<T> factory) {
         this.factory = factory;
         List<String> counterValues = config.getCountersValues();
 
